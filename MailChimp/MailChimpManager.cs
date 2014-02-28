@@ -864,8 +864,8 @@ namespace MailChimp
 
             //  Make the call:
             return MakeAPICall<CompleteResult>(apiAction, args);
-        }      
- 
+        }
+
         /// <summary>
         /// Retrieve the interest groups for a list.
         /// </summary>
@@ -925,6 +925,29 @@ namespace MailChimp
                 apikey = this.APIKey,
                 id = listId,
                 emails = listOfEmails
+            };
+
+            //  Make the call:
+            return MakeAPICall<MemberInfoResult>(apiAction, args);
+        }
+
+        /// <summary>
+        /// Get all the information for particular subscriber of a list
+        /// </summary>
+        /// <param name="listId">the list id to connect to (can be gathered using GetLists())</param>
+        /// <param name="email">email of a subscriber to retrieve information for</param>
+        /// <returns></returns>
+        public MemberInfoResult GetMemberInfo(string listId, EmailParameter email)
+        {
+            //  Our api action:
+            string apiAction = "lists/member-info";
+
+            //  Create our arguments object:
+            object args = new
+            {
+                apikey = this.APIKey,
+                id = listId,
+                emails = new List<EmailParameter>() { email }
             };
 
             //  Make the call:
