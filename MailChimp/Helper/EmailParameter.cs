@@ -10,6 +10,22 @@ namespace MailChimp.Helper
     public class EmailParameter
     {
         /// <summary>
+        /// Default Constructor needed by serialization
+        /// </summary>
+        public EmailParameter() 
+        {
+        }
+
+        /// <summary>
+        /// Creates EmailParameter with given email address
+        /// </summary>
+        /// <param name="emailAddress"></param>
+        public EmailParameter(string emailAddress)
+        {
+            Email = emailAddress;
+        }
+
+        /// <summary>
         /// an email address
         /// </summary>
         [DataMember(Name = "email")]
